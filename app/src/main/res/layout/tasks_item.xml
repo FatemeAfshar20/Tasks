@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextView"
+        android:layout_margin="@dimen/mrg_5"
+        android:padding="15dp"
+        android:textSize="20sp"
+        tools:text="Kamran"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/task_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        style="@style/Widget.MaterialComponents.TextView"
+        android:layout_margin="10dp"
+        android:padding="15dp"
+        android:textSize="15sp"
+        tools:text="TODO"
+        android:textColor="@color/green_dark"
+        android:background="@drawable/state_todo"
+        android:textStyle="bold"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/img_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_content"
+            android:layout_width="wrap_content"
+            android:layout_height="152dp"
+            android:src="@drawable/jeep" />
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_wrapper"
+        android:layout_margin="15dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="@dimen/mrg_5"
+        android:background="@color/beauty_yellow"
+        android:padding="@dimen/pad_10"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        tools:text="@tools:sample/avatars" />
+
+</RelativeLayout>
