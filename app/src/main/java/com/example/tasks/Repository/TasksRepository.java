@@ -9,13 +9,13 @@ import java.util.List;
 
 public class TasksRepository{
     private static TasksRepository sInstance;
-    private List<Tasks> mTasksList=new ArrayList<>();
+    private ArrayList<Tasks> mTasksList=new ArrayList<>();
     private Tasks mTasks;
     private TasksRepository() {
         initTask();
     }
 
-    public List<Tasks> getTasks() {
+    public ArrayList<Tasks> getTasks() {
         return  mTasksList;
     }
 

@@ -1,21 +1,40 @@
 package com.example.tasks.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 
-public class Tasks implements Serializable {
+public class Tasks implements Parcelable {
     private UUID mUUID= UUID.randomUUID();
     private String mName;
     private Date mTaskDate;
-    private int mImgId;
     private String mTaskContent;
 
     public Tasks(Date taskDate,String name) {
         mTaskDate = taskDate;
         mName=name;
     }
+
+    protected Tasks(Parcel in) {
+        mName = in.readString();
+        mTaskContent = in.readString();
+    }
+
+    public static final Creator<Tasks> CREATOR = new Creator<Tasks>() {
+        @Override
+        public Tasks createFromParcel(Parcel in) {
+            return new Tasks(in);
+        }
+
+        @Override
+        public Tasks[] newArray(int size) {
+            return new Tasks[size];
+        }
+    };
 
     public UUID getUUID() {
         return mUUID;
@@ -37,14 +56,6 @@ public class Tasks implements Serializable {
         mTaskContent = taskContent;
     }
 
-
-    public int getImgId() {
-        return mImgId;
-    }
-
-    public void setImgId(int imgId) {
-        mImgId = imgId;
-    }
 
     public Date getTaskDate() {
         mTaskDate=new Date();
@@ -74,4 +85,14 @@ public class Tasks implements Serializable {
         return new Random().nextInt((max - min) + 1) + min;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mName);
+        dest.writeString(mTaskContent);
+    }
 }

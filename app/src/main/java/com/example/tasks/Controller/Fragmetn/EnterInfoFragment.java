@@ -19,8 +19,6 @@ import com.google.android.material.textfield.TextInputEditText;
 public class EnterInfoFragment extends Fragment {
     public static final String BUNDLE_NAME = "Name";
     public static final String BUNDLE_NUMBER_TASKS = "Number Of Tasks";
-    public static final String EXTRA_NAME = "om.example.tasks..Name";
-    public static final String EXTRA_NUMBER_TASKS = "com.example.tasks.Number Of  Tasks";
     private TextInputEditText mInputName,mInputNumOfTask;
     private MaterialButton mBtnStart;
     public EnterInfoFragment() {
@@ -53,16 +51,17 @@ public class EnterInfoFragment extends Fragment {
         mBtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mInputName.getText().toString().equals("")  && mInputNumOfTask.getText().toString().equals(""))
+                if(mInputName.getText().toString().equals("")
+                        && mInputNumOfTask.getText().toString().equals(""))
                     Toast.makeText(getActivity(),
                             "Name and Num of task cant be empty",
                             Toast.LENGTH_LONG)
                             .show();
                 else {
-                    Intent intent = new Intent(getActivity(), TasksActivity.class);
-                    intent.putExtra(BUNDLE_NAME, mInputName.getText().toString());
-                    intent.putExtra(BUNDLE_NUMBER_TASKS,Integer.parseInt(mInputNumOfTask.getText().toString()) );
-                    startActivity(intent);
+                        TasksActivity.start(getContext(),
+                                mInputName.getText().toString(),
+                                Integer.parseInt(mInputNumOfTask.
+                                        getText().toString()));
                 }
             }
         });
@@ -83,7 +82,8 @@ public class EnterInfoFragment extends Fragment {
         super.onSaveInstanceState(outState);
         getActivity();
         outState.putString(BUNDLE_NAME,mInputName.getText().toString());
-        outState.putString(BUNDLE_NUMBER_TASKS,mInputNumOfTask.getText().toString());
+        outState.putString(BUNDLE_NUMBER_TASKS,
+                mInputNumOfTask.getText().toString());
     }
 
     public void saveInstance(Bundle bundle){
